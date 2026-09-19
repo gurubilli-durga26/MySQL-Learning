@@ -1,0 +1,522 @@
+Numeric Functions
+
+1.abs() : Absolute Value of a number
+2.ceil() : Rounded up
+3.floor() : Roundes down
+4.round() : Rounds a secific no of digits
+5.mod() : Modulo Operator
+6.power()/pow : Exponential
+7.sqrt() : Square root of a number
+
+SELECT ABS(-100)AS abs_val;
++---------+
+| abs_val |
++---------+
+|     100 |
++---------+
+
+SELECT CEIL(12.34)AS rounded_up;
++------------+
+| rounded_up |
++------------+
+|         13 |
++------------+
+
+SELECT FLOOR(12.34)AS rounded_down;
++--------------+
+| rounded_down |
++--------------+
+|           12 |
+
+SELECT ROUND(12.3456,2)AS rounded_val;
++-------------+
+| rounded_val |
++-------------+
+|       12.35 |
++-------------+
+
+SELECT MOD(19,5)AS rem;
++------+
+| rem  |
++------+
+|    4 |
++------+
+
+SELECT POW(2,3)AS pow_val;
++---------+
+| pow_val |
++---------+
+|       8 |
++---------+
+
+SELECT SQRT(16)AS sqrt_val;
++----------+
+| sqrt_val |
++----------+
+|        4 |
++----------+
+
+SELECT LOG(10,100)AS LOG_VAL;
++---------+
+| LOG_VAL |
++---------+
+|       2 |
++---------+
+
+ SELECT RADIANS(180)AS RAD_VAL;
++-------------------+
+| RAD_VAL           |
++-------------------+
+| 3.141592653589793 |
++-------------------+
+
+SELECT DEGREES(PI())AS DEG_VAL;
++---------+
+| DEG_VAL |
++---------+
+|     180 |
++---------+
+
+SIGN()
+0--> FOR ZERO
+-1-->NEG VAL
+1-->POS VAL
+
+SELECT SIGN(-25)AS SIGN_VAL;
++----------+
+| SIGN_VAL |
++----------+
+|       -1 |
++----------+
+
+
+SELECT SIGN(25)AS SIGN_VAL;
++----------+
+| SIGN_VAL |
++----------+
+|        1 |
++----------+
+
+
+SELECT SIGN(0)AS SIGN_VAL;
++----------+
+| SIGN_VAL |
++----------+
+|        0 |
+
+SELECT RAND()AS RAND_NO;
++---------------------+
+| RAND_NO             |
++---------------------+
+| 0.09716881913800614 |
++---------------------+
+
+ SELECT RAND()AS RAND_N0;
++--------------------+
+| RAND_N0            |
++--------------------+
+| 0.3321891839915786 |
+
+SELECT GREATEST(-10,100,-200,10)AS GREAT_VAL;
++-----------+
+| GREAT_VAL |
++-----------+
+|       100 |
++-----------+
+
+ SELECT LEAST(-10,100,-200,10)AS LEAST_VAL;
++-----------+
+| LEAST_VAL |
++-----------+
+|      -200 |
++-----------+
+
+SELECT BIN(10)AS BINARY_VAL;
++------------+
+| BINARY_VAL |
++------------+
+| 1010       |
++------------+
+
+SELECT OCT(64)AS OCTA_VAL;
++----------+
+| OCTA_VAL |
++----------+
+| 100      |
++----------+
+
+SELECT HEX(255)AS HEXA_VAL;
++----------+
+| HEXA_VAL |
++----------+
+| FF       |
++----------+
+
+
+--------------- String Methods--------------------
+
+CREATE TABLE employees (
+	emp_id INT PRIMARY KEY,
+	first_name VARCHAR(30),
+	last_name VARCHAR(30),
+	email VARCHAR(60),
+	phone_number VARCHAR(20),
+	department VARCHAR(30),
+	city VARCHAR(30),
+	salary DECIMAL(10,2)
+);
+
+
+INSERT INTO employees VALUES
+(101,'Rahul','Kumar','rahul.kumar@gmail.com','987-654-3210','IT','Hyderabad',45000),
+(102,'Anita','Sharma','anita.sharma@yahoo.com','912-345-6789','HR','Bangalore',38000),
+(103,'Suresh','Verma','suresh.verma@gmail.com','998-123-4567','Sales','Chennai',52000),
+(104,'Priya','Singh','priya.singh@outlook.com','900-456-7890','Finance','Pune',47000),
+(105,'Rahul','Joshi','rahul.joshi@gmail.com','955-888-1111','Testing','Delhi',41000),
+(106,'Kiran','Reddy','kiran.reddy@gmail.com','901-222-3333','IT','Hyderabad',56000),
+(107,'Deepika','Naidu','deepika.naidu@yahoo.com','944-111-2222','HR','Vizag',39000),
+(108,'Mahesh','Patel','mahesh.patel@gmail.com','933-444-5555','Sales','Mumbai',62000),
+(109,'Divya','Gupta','divya.gupta@gmail.com','955-777-8888','Finance','Delhi',49000),
+(110,'Arjun','Rao','arjun.rao@gmail.com','988-999-7777','Developer','Hyderabad',68000);
+
+ SELECT*FROM employees;
++--------+------------+-----------+-------------------------+--------------+------------+-----------+----------+
+| emp_id | first_name | last_name | email                   | phone_number | department | city      | salary   |
++--------+------------+-----------+-------------------------+--------------+------------+-----------+----------+
+|    101 | Rahul      | Kumar     | rahul.kumar@gmail.com   | 987-654-3210 | IT         | Hyderabad | 45000.00 |
+|    102 | Anita      | Sharma    | anita.sharma@yahoo.com  | 912-345-6789 | HR         | Bangalore | 38000.00 |
+|    103 | Suresh     | Verma     | suresh.verma@gmail.com  | 998-123-4567 | Sales      | Chennai   | 52000.00 |
+|    104 | Priya      | Singh     | priya.singh@outlook.com | 900-456-7890 | Finance    | Pune      | 47000.00 |
+|    105 | Rahul      | Joshi     | rahul.joshi@gmail.com   | 955-888-1111 | Testing    | Delhi     | 41000.00 |
+|    106 | Kiran      | Reddy     | kiran.reddy@gmail.com   | 901-222-3333 | IT         | Hyderabad | 56000.00 |
+|    107 | Deepika    | Naidu     | deepika.naidu@yahoo.com | 944-111-2222 | HR         | Vizag     | 39000.00 |
+|    108 | Mahesh     | Patel     | mahesh.patel@gmail.com  | 933-444-5555 | Sales      | Mumbai    | 62000.00 |
+|    109 | Divya      | Gupta     | divya.gupta@gmail.com   | 955-777-8888 | Finance    | Delhi     | 49000.00 |
+|    110 | Arjun      | Rao       | arjun.rao@gmail.com     | 988-999-7777 | Developer  | Hyderabad | 68000.00 |
+
+SELECT first_name,last_name, CONCAT(first_name,' ',last_name)AS FULL_NAME FROM  employees;
++------------+-----------+---------------+
+| first_name | last_name | FULL_NAME     |
++------------+-----------+---------------+
+| Rahul      | Kumar     | Rahul Kumar   |
+| Anita      | Sharma    | Anita Sharma  |
+| Suresh     | Verma     | Suresh Verma  |
+| Priya      | Singh     | Priya Singh   |
+| Rahul      | Joshi     | Rahul Joshi   |
+| Kiran      | Reddy     | Kiran Reddy   |
+| Deepika    | Naidu     | Deepika Naidu |
+| Mahesh     | Patel     | Mahesh Patel  |
+| Divya      | Gupta     | Divya Gupta   |
+| Arjun      | Rao       | Arjun Rao     |
++------------+-----------+---------------+
+
+SELECT first_name,UPPER(first_name)AS UPPER_NAME FROM  employees;
++------------+------------+
+| first_name | UPPER_NAME |
++------------+------------+
+| Rahul      | RAHUL      |
+| Anita      | ANITA      |
+| Suresh     | SURESH     |
+| Priya      | PRIYA      |
+| Rahul      | RAHUL      |
+| Kiran      | KIRAN      |
+| Deepika    | DEEPIKA    |
+| Mahesh     | MAHESH     |
+| Divya      | DIVYA      |
+| Arjun      | ARJUN      |
++------------+------------+
+10 rows in set (0.00 sec)
+
+ SELECT first_name,LOWER(first_name)AS LOWER_NAME FROM  employees;
++------------+------------+
+| first_name | LOWER_NAME |
++------------+------------+
+| Rahul      | rahul      |
+| Anita      | anita      |
+| Suresh     | suresh     |
+| Priya      | priya      |
+| Rahul      | rahul      |
+| Kiran      | kiran      |
+| Deepika    | deepika    |
+| Mahesh     | mahesh     |
+| Divya      | divya      |
+| Arjun      | arjun      |
++------------+------------+
+
+SELECT email,SUBSTRING(email,1,10)AS email_PREFIX FROM  employees;
++-------------------------+--------------+
+| email                   | email_PREFIX |
++-------------------------+--------------+
+| rahul.kumar@gmail.com   | rahul.kuma   |
+| anita.sharma@yahoo.com  | anita.shar   |
+| suresh.verma@gmail.com  | suresh.ver   |
+| priya.singh@outlook.com | priya.sing   |
+| rahul.joshi@gmail.com   | rahul.josh   |
+| kiran.reddy@gmail.com   | kiran.redd   |
+| deepika.naidu@yahoo.com | deepika.na   |
+| mahesh.patel@gmail.com  | mahesh.pat   |
+| divya.gupta@gmail.com   | divya.gupt   |
+| arjun.rao@gmail.com     | arjun.rao@   |
++-------------------------+--------------+
+
+SELECT email,SUBSTRING(email,1)AS email_PREFIX FROM  employees;
++-------------------------+-------------------------+
+| email                   | email_PREFIX            |
++-------------------------+-------------------------+
+| rahul.kumar@gmail.com   | rahul.kumar@gmail.com   |
+| anita.sharma@yahoo.com  | anita.sharma@yahoo.com  |
+| suresh.verma@gmail.com  | suresh.verma@gmail.com  |
+| priya.singh@outlook.com | priya.singh@outlook.com |
+| rahul.joshi@gmail.com   | rahul.joshi@gmail.com   |
+| kiran.reddy@gmail.com   | kiran.reddy@gmail.com   |
+| deepika.naidu@yahoo.com | deepika.naidu@yahoo.com |
+| mahesh.patel@gmail.com  | mahesh.patel@gmail.com  |
+| divya.gupta@gmail.com   | divya.gupta@gmail.com   |
+| arjun.rao@gmail.com     | arjun.rao@gmail.com     |
++-------------------------+-------------------------+
+
+ SELECT email,SUBSTRING(email,10)AS email_PREFIX FROM  employees;
++-------------------------+----------------+
+| email                   | email_PREFIX   |
++-------------------------+----------------+
+| rahul.kumar@gmail.com   | ar@gmail.com   |
+| anita.sharma@yahoo.com  | rma@yahoo.com  |
+| suresh.verma@gmail.com  | rma@gmail.com  |
+| priya.singh@outlook.com | gh@outlook.com |
+| rahul.joshi@gmail.com   | hi@gmail.com   |
+| kiran.reddy@gmail.com   | dy@gmail.com   |
+| deepika.naidu@yahoo.com | aidu@yahoo.com |
+| mahesh.patel@gmail.com  | tel@gmail.com  |
+| divya.gupta@gmail.com   | ta@gmail.com   |
+
+SELECT email,LENGTH(email)AS EMAIL_LEN FROM  employees;
++-------------------------+-----------+
+| email                   | EMAIL_LEN |
++-------------------------+-----------+
+| rahul.kumar@gmail.com   |        21 |
+| anita.sharma@yahoo.com  |        22 |
+| suresh.verma@gmail.com  |        22 |
+| priya.singh@outlook.com |        23 |
+| rahul.joshi@gmail.com   |        21 |
+| kiran.reddy@gmail.com   |        21 |
+| deepika.naidu@yahoo.com |        23 |
+| mahesh.patel@gmail.com  |        22 |
+| divya.gupta@gmail.com   |        21 |
+| arjun.rao@gmail.com     |        19 |
++-------------------------+-----------+
+
+
+INSERT INTO employees(EMP_ID,first_name)VALUES(111,' ARUN ');
+SELECT*FROM employees;
++--------+------------+-----------+-------------------------+--------------+------------+-----------+----------+
+| emp_id | first_name | last_name | email                   | phone_number | department | city      | salary   |
++--------+------------+-----------+-------------------------+--------------+------------+-----------+----------+
+|    101 | Rahul      | Kumar     | rahul.kumar@gmail.com   | 987-654-3210 | IT         | Hyderabad | 45000.00 |
+|    102 | Anita      | Sharma    | anita.sharma@yahoo.com  | 912-345-6789 | HR         | Bangalore | 38000.00 |
+|    103 | Suresh     | Verma     | suresh.verma@gmail.com  | 998-123-4567 | Sales      | Chennai   | 52000.00 |
+|    104 | Priya      | Singh     | priya.singh@outlook.com | 900-456-7890 | Finance    | Pune      | 47000.00 |
+|    105 | Rahul      | Joshi     | rahul.joshi@gmail.com   | 955-888-1111 | Testing    | Delhi     | 41000.00 |
+|    106 | Kiran      | Reddy     | kiran.reddy@gmail.com   | 901-222-3333 | IT         | Hyderabad | 56000.00 |
+|    107 | Deepika    | Naidu     | deepika.naidu@yahoo.com | 944-111-2222 | HR         | Vizag     | 39000.00 |
+|    108 | Mahesh     | Patel     | mahesh.patel@gmail.com  | 933-444-5555 | Sales      | Mumbai    | 62000.00 |
+|    109 | Divya      | Gupta     | divya.gupta@gmail.com   | 955-777-8888 | Finance    | Delhi     | 49000.00 |
+|    110 | Arjun      | Rao       | arjun.rao@gmail.com     | 988-999-7777 | Developer  | Hyderabad | 68000.00 |
+|    111 |  ARUN      | NULL      | NULL                    | NULL         | NULL       | NULL      |     NULL |
++--------+------------+-----------+-------------------------+--------------+------------+-----------+----------+
+
+SELECT  first_name,TRIM( first_name)AS TRIMMED_NAME FROM employees;
++------------+--------------+
+| first_name | TRIMMED_NAME |
++------------+--------------+
+| Rahul      | Rahul        |
+| Anita      | Anita        |
+| Suresh     | Suresh       |
+| Priya      | Priya        |
+| Rahul      | Rahul        |
+| Kiran      | Kiran        |
+| Deepika    | Deepika      |
+| Mahesh     | Mahesh       |
+| Divya      | Divya        |
+| Arjun      | Arjun        |
+|  ARUN      | ARUN         |
++------------+--------------+
+
+SELECT phone_number,REPLACE(phone_number,'-','')AS NEW_PHONE  FROM employees;
++--------------+------------+
+| phone_number | NEW_PHONE  |
++--------------+------------+
+| 987-654-3210 | 9876543210 |
+| 912-345-6789 | 9123456789 |
+| 998-123-4567 | 9981234567 |
+| 900-456-7890 | 9004567890 |
+| 955-888-1111 | 9558881111 |
+| 901-222-3333 | 9012223333 |
+| 944-111-2222 | 9441112222 |
+| 933-444-5555 | 9334445555 |
+| 955-777-8888 | 9557778888 |
+| 988-999-7777 | 9889997777 |
+| NULL         | NULL       |
++--------------+------------+
+
+SELECT CONCAT_WS(', ',first_name,last_name,EMAIL)AS EMPL_INFO  FROM employees;
++-----------------------------------------+
+| EMPL_INFO                               |
++-----------------------------------------+
+| Rahul, Kumar, rahul.kumar@gmail.com     |
+| Anita, Sharma, anita.sharma@yahoo.com   |
+| Suresh, Verma, suresh.verma@gmail.com   |
+| Priya, Singh, priya.singh@outlook.com   |
+| Rahul, Joshi, rahul.joshi@gmail.com     |
+| Kiran, Reddy, kiran.reddy@gmail.com     |
+| Deepika, Naidu, deepika.naidu@yahoo.com |
+| Mahesh, Patel, mahesh.patel@gmail.com   |
+| Divya, Gupta, divya.gupta@gmail.com     |
+| Arjun, Rao, arjun.rao@gmail.com         |
+|  ARUN                                   |
++-----------------------------------------+
+
+SELECT first_name,POSITION('A' IN first_name)AS POS_OF FROM employees;
++------------+--------+
+| first_name | POS_OF |
++------------+--------+
+| Rahul      |      2 |
+| Anita      |      1 |
+| Suresh     |      0 |
+| Priya      |      5 |
+| Rahul      |      2 |
+| Kiran      |      4 |
+| Deepika    |      7 |
+| Mahesh     |      2 |
+| Divya      |      5 |
+| Arjun      |      1 |
+|  ARUN      |      2 |
++------------+--------+
+
+SELECT first_name,RIGHT(first_name,3)AS SHORT_NAME FROM employees;
++------------+------------+
+| first_name | SHORT_NAME |
++------------+------------+
+| Rahul      | hul        |
+| Anita      | ita        |
+| Suresh     | esh        |
+| Priya      | iya        |
+| Rahul      | hul        |
+| Kiran      | ran        |
+| Deepika    | ika        |
+| Mahesh     | esh        |
+| Divya      | vya        |
+| Arjun      | jun        |
+|  ARUN      | UN         |
++------------+------------+
+
+SELECT last_name,LEFT(last_name,3)AS SHORT_NAME FROM employees;
++-----------+------------+
+| last_name | SHORT_NAME |
++-----------+------------+
+| Kumar     | Kum        |
+| Sharma    | Sha        |
+| Verma     | Ver        |
+| Singh     | Sin        |
+| Joshi     | Jos        |
+| Reddy     | Red        |
+| Naidu     | Nai        |
+| Patel     | Pat        |
+| Gupta     | Gup        |
+| Rao       | Rao        |
+| NULL      | NULL       |
++-----------+------------+
+
+SELECT first_name,REVERSE(first_name)AS REV_NAME  FROM employees;
++------------+----------+
+| first_name | REV_NAME |
++------------+----------+
+| Rahul      | luhaR    |
+| Anita      | atinA    |
+| Suresh     | hseruS   |
+| Priya      | ayirP    |
+| Rahul      | luhaR    |
+| Kiran      | nariK    |
+| Deepika    | akipeeD  |
+| Mahesh     | hsehaM   |
+| Divya      | ayviD    |
+| Arjun      | nujrA    |
+|  ARUN      |  NURA    |
++------------+----------+
+
+SELECT first_name,LPAD(first_name,10,'*')AS PADDED_NAME FROM employees;
++------------+-------------+
+| first_name | PADDED_NAME |
++------------+-------------+
+| Rahul      | *****Rahul  |
+| Anita      | *****Anita  |
+| Suresh     | ****Suresh  |
+| Priya      | *****Priya  |
+| Rahul      | *****Rahul  |
+| Kiran      | *****Kiran  |
+| Deepika    | ***Deepika  |
+| Mahesh     | ****Mahesh  |
+| Divya      | *****Divya  |
+| Arjun      | *****Arjun  |
+|  ARUN      | **** ARUN   |
++------------+-------------+
+
+ SELECT first_name,RPAD(first_name,10,'*')AS PADDED_NAME FROM employees;
++------------+-------------+
+| first_name | PADDED_NAME |
++------------+-------------+
+| Rahul      | Rahul*****  |
+| Anita      | Anita*****  |
+| Suresh     | Suresh****  |
+| Priya      | Priya*****  |
+| Rahul      | Rahul*****  |
+| Kiran      | Kiran*****  |
+| Deepika    | Deepika***  |
+| Mahesh     | Mahesh****  |
+| Divya      | Divya*****  |
+| Arjun      | Arjun*****  |
+|  ARUN      |  ARUN ****  |
++------------+-------------+
+
+ SELECT EMAIL,
+ -> CONCAT(LEFT(EMAIL,3),'***@',SUBSTRING_INDEX(EMAIL,'@',1))AS MASKED_EMAIL FROM EMPLOYEES;
++-------------------------+----------------------+
+| EMAIL                   | MASKED_EMAIL         |
++-------------------------+----------------------+
+| rahul.kumar@gmail.com   | rah***@rahul.kumar   |
+| anita.sharma@yahoo.com  | ani***@anita.sharma  |
+| suresh.verma@gmail.com  | sur***@suresh.verma  |
+| priya.singh@outlook.com | pri***@priya.singh   |
+| rahul.joshi@gmail.com   | rah***@rahul.joshi   |
+| kiran.reddy@gmail.com   | kir***@kiran.reddy   |
+| deepika.naidu@yahoo.com | dee***@deepika.naidu |
+| mahesh.patel@gmail.com  | mah***@mahesh.patel  |
+| divya.gupta@gmail.com   | div***@divya.gupta   |
+| arjun.rao@gmail.com     | arj***@arjun.rao     |
+| NULL                    | NULL                 |
++-------------------------+----------------------+
+
+SELECT FIRST_NAME FROM EMPLOYEES
+ WHERE LOWER(FIRST_NAME)=LOWER(REVERSE(FIRST_NAME));
+Empty set (0.00 sec)
+
+
+SELECT FIRST_NAME,
+CASE WHEN LENGTH(FIRST_NAME)<=5 THEN 'SHORT NAME'
+ELSE 'LONG NAME' END AS NAME_CATEGORY
+FROM EMPLOYEES;
+
++------------+---------------+
+| FIRST_NAME | NAME_CATEGORY |
++------------+---------------+
+| Rahul      | SHORT NAME    |
+| Anita      | SHORT NAME    |
+| Suresh     | LONG NAME     |
+| Priya      | SHORT NAME    |
+| Rahul      | SHORT NAME    |
+| Kiran      | SHORT NAME    |
+| Deepika    | LONG NAME     |
+| Mahesh     | LONG NAME     |
+| Divya      | SHORT NAME    |
+| Arjun      | SHORT NAME    |
+|  ARUN      | LONG NAME     |
++------------+---------------+
