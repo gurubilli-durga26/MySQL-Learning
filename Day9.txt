@@ -1,0 +1,533 @@
+Clauses:
+
+Clauses are used to control how data is selected, filtered, grouped, sorted or modified in SQL Queries
+
+Think of cluases like instructions given to the database
+
+1.Where clause
+
+Filtered records based on specified cond where clause can be used as compariision operators,logical operators etc 
+
+Syntax:
+
+Select column1,column2.....
+from table
+where condition;
+
+2.Group by clause:
+
+The group by clause is used to grp rows having the same value in one or more columns.It is commonly used with aggregate functions such as
+sum(),min(),max(),avg(),count()
+
+Syntax:
+
+select column-name,aggregate-function(column-name)
+from table-name
+group by column;
+
+3.Having Clause:
+
+The having clause is used to filter grouped records after group by clause.It is similar to where but it works on grouped instead of individual rows
+
+Syntax:
+
+Select column-function(column-name)
+from table-name group by column-name having condition;
+
+4.Order by clause 
+
+The order by clause is used to sort the result set in ascending(ASC) or Descending (DESc) order
+
+(ASC): ascending order by default
+
+Syntax:
+
+select column-name
+from table-name
+order by column-name asc;
+
+CREATE TABLE STUDENTS (
+    StudentID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT,
+    Department VARCHAR(30),
+    Marks INT,
+    City VARCHAR(30)
+);
+
+-- Insert Sample Data (without StudentID)
+INSERT INTO STUDENTS (Name, Age, Department, Marks, City) VALUES
+('Anil', 20, 'CSE', 85, 'Hyderabad'),
+('Sneha', 22, 'ECE', 75, 'Mumbai'),
+('Ravi', 20, 'CSE', NULL, 'Hyderabad'),
+('Divya', 23, 'MECH', 65, NULL),
+('Kiran', 22, 'ECE', 75, 'Pune'),
+('Varun', 21, 'CSE', 92, 'Chennai'),
+('Priya', 20, 'EEE', 88, 'Delhi'),
+('John', 22, 'MECH', 55, 'Mumbai'),
+('Rekha', 21, 'ECE', 75, 'Pune'),
+('Ramesh', 23, 'EEE', NULL, 'Delhi');
+
+select*from students;
+
++-----------+--------+------+------------+-------+-----------+
+| StudentID | Name   | Age  | Department | Marks | City      |
++-----------+--------+------+------------+-------+-----------+
+|         1 | Anil   |   20 | CSE        |    85 | Hyderabad |
+|         2 | Sneha  |   22 | ECE        |    75 | Mumbai    |
+|         3 | Ravi   |   20 | CSE        |  NULL | Hyderabad |
+|         4 | Divya  |   23 | MECH       |    65 | NULL      |
+|         5 | Kiran  |   22 | ECE        |    75 | Pune      |
+|         6 | Varun  |   21 | CSE        |    92 | Chennai   |
+|         7 | Priya  |   20 | EEE        |    88 | Delhi     |
+|         8 | John   |   22 | MECH       |    55 | Mumbai    |
+|         9 | Rekha  |   21 | ECE        |    75 | Pune      |
+|        10 | Ramesh |   23 | EEE        |  NULL | Delhi     |
++-----------+--------+------+------------+-------+-----------+
+
+CREATE TABLE sales (
+   sale_id INT PRIMARY KEY,
+   product VARCHAR(50),
+   category VARCHAR(50),
+   units_sold INT,
+   unit_price INT,
+   region VARCHAR(50)
+);
+
+INSERT INTO sales (sale_id, product, category, units_sold, unit_price, region) VALUES
+(1,  'Keyboard',    'Electronics', 10, 1200,  'North'),
+(2,  'Monitor',     'Electronics', 5,  7000,  'South'),
+(3,  'Chair',       'Furniture',   15, 2500,  'North'),
+(4,  'Desk',        'Furniture',   7,  4500,  'West'),
+(5,  'Mouse',       'Electronics', 20, 800,   'East'),
+(6,  'Sofa',        'Furniture',   3,  15000, 'South'),
+(7,  'Headphones',  'Electronics', 8,  1800,  'North'),
+(8,  'Laptop',      'Electronics', 6,  55000, 'West'),
+(9,  'Table',       'Furniture',   12, 6000,  'East'),
+(10, 'Fan',         'HomeAppliance', 18, 3000, 'South'),
+(11, 'AC',          'HomeAppliance', 4, 35000, 'North'),
+(12, 'Cupboard',    'Furniture',   5, 12000, 'West'),
+(13, 'Printer',     'Electronics', 9, 9000,  'East'),
+(14, 'Bed',         'Furniture',   2, 25000, 'South'),
+(15, 'Mobile',      'Electronics', 14, 20000, 'North');
+
++---------+------------+---------------+------------+------------+--------+
+| sale_id | product    | category      | units_sold | unit_price | region |
++---------+------------+---------------+------------+------------+--------+
+|       1 | Keyboard   | Electronics   |         10 |       1200 | North  |
+|       2 | Monitor    | Electronics   |          5 |       7000 | South  |
+|       3 | Chair      | Furniture     |         15 |       2500 | North  |
+|       4 | Desk       | Furniture     |          7 |       4500 | West   |
+|       5 | Mouse      | Electronics   |         20 |        800 | East   |
+|       6 | Sofa       | Furniture     |          3 |      15000 | South  |
+|       7 | Headphones | Electronics   |          8 |       1800 | North  |
+|       8 | Laptop     | Electronics   |          6 |      55000 | West   |
+|       9 | Table      | Furniture     |         12 |       6000 | East   |
+|      10 | Fan        | HomeAppliance |         18 |       3000 | South  |
+|      11 | AC         | HomeAppliance |          4 |      35000 | North  |
+|      12 | Cupboard   | Furniture     |          5 |      12000 | West   |
+|      13 | Printer    | Electronics   |          9 |       9000 | East   |
+|      14 | Bed        | Furniture     |          2 |      25000 | South  |
+|      15 | Mobile     | Electronics   |         14 |      20000 | North  |
++---------+------------+---------------+------------+------------+--------+
+
+DISPlay all students who belong to CSE DEPT
+
+MARKS GREATER THAN 80
+WHO ARE 22 YEARS OLD
+BELongs to Mumbai 
+
+SELECT*FROM STUDENTS
+WHERE Department="CSE";
++-----------+-------+------+------------+-------+-----------+
+| StudentID | Name  | Age  | Department | Marks | City      |
++-----------+-------+------+------------+-------+-----------+
+|         1 | Anil  |   20 | CSE        |    85 | Hyderabad |
+|         3 | Ravi  |   20 | CSE        |  NULL | Hyderabad |
+|         6 | Varun |   21 | CSE        |    92 | Chennai   |
++-----------+-------+------+------------+-------+-----------+
+
+ SELECT*FROM STUDENTS
+ WHERE Marks > 80;
++-----------+-------+------+------------+-------+-----------+
+| StudentID | Name  | Age  | Department | Marks | City      |
++-----------+-------+------+------------+-------+-----------+
+|         1 | Anil  |   20 | CSE        |    85 | Hyderabad |
+|         6 | Varun |   21 | CSE        |    92 | Chennai   |
+|         7 | Priya |   20 | EEE        |    88 | Delhi     |
++-----------+-------+------+------------+-------+-----------+
+SELECT*FROM STUDENTS
+WHERE Age = 22;
++-----------+-------+------+------------+-------+--------+
+| StudentID | Name  | Age  | Department | Marks | City   |
++-----------+-------+------+------------+-------+--------+
+|         2 | Sneha |   22 | ECE        |    75 | Mumbai |
+|         5 | Kiran |   22 | ECE        |    75 | Pune   |
+|         8 | John  |   22 | MECH       |    55 | Mumbai |
++-----------+-------+------+------------+-------+--------+
+SELECT*FROM STUDENTS
+WHERE City="Mumbai";
++-----------+-------+------+------------+-------+--------+
+| StudentID | Name  | Age  | Department | Marks | City   |
++-----------+-------+------+------------+-------+--------+
+|         2 | Sneha |   22 | ECE        |    75 | Mumbai |
+|         8 | John  |   22 | MECH       |    55 | Mumbai |
++-----------+-------+------+------------+-------+--------+
+ SELECT*FROM STUDENTS
+ WHERE Marks < 70;
++-----------+-------+------+------------+-------+--------+
+| StudentID | Name  | Age  | Department | Marks | City   |
++-----------+-------+------+------------+-------+--------+
+|         4 | Divya |   23 | MECH       |    65 | NULL   |
+|         8 | John  |   22 | MECH       |    55 | Mumbai |
++-----------+-------+------+------------+-------+--------+
+
+2.GROUP
+
+ SELECT Department,COUNT(*)AS TOTAL_STUDENTS
+ FROM STUDENTS
+ GROUP BY Department;
++------------+----------------+
+| Department | TOTAL_STUDENTS |
++------------+----------------+
+| CSE        |              3 |
+| ECE        |              3 |
+| MECH       |              2 |
+| EEE        |              2 |
++------------+----------------+
+
+SELECT Department,avg(Marks)AS NEW_AVG
+FROM STUDENTS
+GROUP BY Department;
++------------+---------+
+| Department | NEW_AVG |
++------------+---------+
+| CSE        | 88.5000 |
+| ECE        | 75.0000 |
+| MECH       | 60.0000 |
+| EEE        | 88.0000 |
++------------+---------+
+
+SELECT Department,max(Marks)AS NEW_marks
+FROM STUDENTS
+GROUP BY Department;
++------------+-----------+
+| Department | NEW_marks |
++------------+-----------+
+| CSE        |        92 |
+| ECE        |        75 |
+| MECH       |        65 |
+| EEE        |        88 |
+
+SELECT Department,min(Marks)AS NEW_marks
+FROM STUDENTS
+GROUP BY Department;
++------------+-----------+
+| Department | NEW_marks |
++------------+-----------+
+| CSE        |        85 |
+| ECE        |        75 |
+| MECH       |        55 |
+| EEE        |        88 |
++------------+-----------+
+
+SELECT Department,sum(Marks)AS NEW_marks
+FROM STUDENTS
+GROUP BY Department;
++------------+-----------+
+| Department | NEW_marks |
++------------+-----------+
+| CSE        |       177 |
+| ECE        |       225 |
+| MECH       |       120 |
+| EEE        |        88 |
++------------+-----------+
+
+3.Having 
+
+SELECT Department,COUNT(*)AS TOTAL_STUDENTS
+FROM STUDENTS
+GROUP BY Department
+HAVING TOTAL_STUDENTS>2;
++------------+----------------+
+| Department | TOTAL_STUDENTS |
++------------+----------------+
+| CSE        |              3 |
+| ECE        |              3 |
++------------+----------------+
+
+SELECT Department,COUNT(*)AS TOTAL_STUDENTS
+FROM STUDENTS
+GROUP BY Department
+HAVING COUNT(*)>2;
+
+SELECT Department,avg(Marks)AS NEW_AVG
+FROM STUDENTS
+GROUP BY Department
+HAVING NEW_AVG >75;
++------------+---------+
+| Department | NEW_AVG |
++------------+---------+
+| CSE        | 88.5000 |
+| EEE        | 88.0000 |
++------------+---------+
+
+SELECT Department,sum(Marks)AS NEW_marks
+FROM STUDENTS
+GROUP BY Department
+HAVING NEW_marks > 150;
++------------+-----------+
+| Department | NEW_marks |
++------------+-----------+
+| CSE        |       177 |
+| ECE        |       225 |
++------------+-----------+
+
+SELECT Department,max(Marks)AS NEW_marks
+FROM STUDENTS
+GROUP BY Department
+HAVING NEW_marks > 90;
++------------+-----------+
+| Department | NEW_marks |
++------------+-----------+
+| CSE        |        92 |
++------------+-----------+
+
+SELECT Department,min(Marks)AS NEW_marks
+FROM STUDENTS
+GROUP BY Department
+HAVING NEW_marks < 60;
++------------+-----------+
+| Department | NEW_marks |
++------------+-----------+
+| MECH       |        55 |
++------------+-----------+
+
+5.Order 
+ SELECT*FROM STUDENTS ORDER BY NAME ASC;
++-----------+--------+------+------------+-------+-----------+
+| StudentID | Name   | Age  | Department | Marks | City      |
++-----------+--------+------+------------+-------+-----------+
+|         1 | Anil   |   20 | CSE        |    85 | Hyderabad |
+|         4 | Divya  |   23 | MECH       |    65 | NULL      |
+|         8 | John   |   22 | MECH       |    55 | Mumbai    |
+|         5 | Kiran  |   22 | ECE        |    75 | Pune      |
+|         7 | Priya  |   20 | EEE        |    88 | Delhi     |
+|        10 | Ramesh |   23 | EEE        |  NULL | Delhi     |
+|         3 | Ravi   |   20 | CSE        |  NULL | Hyderabad |
+|         9 | Rekha  |   21 | ECE        |    75 | Pune      |
+|         2 | Sneha  |   22 | ECE        |    75 | Mumbai    |
+|         6 | Varun  |   21 | CSE        |    92 | Chennai   |
+
+SELECT*FROM STUDENTS ORDER BY MARKS ASC;
++-----------+--------+------+------------+-------+-----------+
+| StudentID | Name   | Age  | Department | Marks | City      |
++-----------+--------+------+------------+-------+-----------+
+|         3 | Ravi   |   20 | CSE        |  NULL | Hyderabad |
+|        10 | Ramesh |   23 | EEE        |  NULL | Delhi     |
+|         8 | John   |   22 | MECH       |    55 | Mumbai    |
+|         4 | Divya  |   23 | MECH       |    65 | NULL      |
+|         2 | Sneha  |   22 | ECE        |    75 | Mumbai    |
+|         5 | Kiran  |   22 | ECE        |    75 | Pune      |
+|         9 | Rekha  |   21 | ECE        |    75 | Pune      |
+|         1 | Anil   |   20 | CSE        |    85 | Hyderabad |
+|         7 | Priya  |   20 | EEE        |    88 | Delhi     |
+|         6 | Varun  |   21 | CSE        |    92 | Chennai   |
++-----------+--------+------+------------+-------+-----------+
+
+SELECT*FROM STUDENTS ORDER BY MARKS desc;
+
+
+from
+ where 
+group by
+having
+select 
+order by
+
+
+SELECT Department,
+avg(marks)as average_marks
+from students
+ where age>20
+ group by department
+ having average_marks > 70
+ order by average_marks desc;
++------------+---------------+
+| Department | average_marks |
++------------+---------------+
+| CSE        |       92.0000 |
+| ECE        |       75.0000 |
++------------+---------------+
+
+SELECT city,
+count(*)as tot_students
+from students 
+where marks > 70
+group by city
+having tot_students > 1
+order by tot_students asc;
+
++------+--------------+
+| city | tot_students |
++------+--------------+
+| Pune |            2 |
++------+--------------+
+
+SELECT department,
+sum(marks)as tot_mark
+FROM STUDENTS
+WHERE city in ("Hyderabad","Pune")
+where department 
+having tot_mark>100
+order by tot_mark;
+
+SELECT city,
+max(marks)as tot_marks
+FROM STUDENTS
+where department="ece" 
+group by city
+having max_marks>70
+order by max_marks decs;
+
+SELECT department,
+avg(age)as avg_age
+from students
+where city is not null
+group by department having avg_age>20
+order by department;
+
+ SELECT*FROM sales;
++---------+------------+---------------+------------+------------+--------+
+| sale_id | product    | category      | units_sold | unit_price | region |
++---------+------------+---------------+------------+------------+--------+
+|       1 | Keyboard   | Electronics   |         10 |       1200 | North  |
+|       2 | Monitor    | Electronics   |          5 |       7000 | South  |
+|       3 | Chair      | Furniture     |         15 |       2500 | North  |
+|       4 | Desk       | Furniture     |          7 |       4500 | West   |
+|       5 | Mouse      | Electronics   |         20 |        800 | East   |
+|       6 | Sofa       | Furniture     |          3 |      15000 | South  |
+|       7 | Headphones | Electronics   |          8 |       1800 | North  |
+|       8 | Laptop     | Electronics   |          6 |      55000 | West   |
+|       9 | Table      | Furniture     |         12 |       6000 | East   |
+|      10 | Fan        | HomeAppliance |         18 |       3000 | South  |
+|      11 | AC         | HomeAppliance |          4 |      35000 | North  |
+|      12 | Cupboard   | Furniture     |          5 |      12000 | West   |
+|      13 | Printer    | Electronics   |          9 |       9000 | East   |
+|      14 | Bed        | Furniture     |          2 |      25000 | South  |
+|      15 | Mobile     | Electronics   |         14 |      20000 | North  |
++---------+------------+---------------+------------+------------+--------+
+
+SELECT category,SUM(units_sold)AS TOT_UNITS
+FROM SALES
+GROUP BY category
+HAVING TOT_UNITS>20;
+
++---------------+-----------+
+| category      | TOT_UNITS |
++---------------+-----------+
+| Electronics   |        72 |
+| Furniture     |        44 |
+| HomeAppliance |        22 |
++---------------+-----------+
+
+ SELECT region,sum(unit_price)AS new_rev
+ FROM SALES
+ GROUP BY region
+ HAVING new_rev>50000;
+
++--------+---------+
+| region | new_rev |
++--------+---------+
+| North  |   60500 |
+| West   |   71500 |
++--------+---------+
+
+SELECT category,count(*)AS TOTAL_PRODUCTS
+FROM SALES
+GROUP BY category
+HAVING TOTAL_PRODUCTS > 2;
+
++-------------+----------------+
+| category    | TOTAL_PRODUCTS |
++-------------+----------------+
+| Electronics |              7 |
+| Furniture   |              6 |
++-------------+----------------+
+
+
+
+ SELECT category,avg(unit_price)AS new_unit
+ FROM SALES
+ GROUP BY category
+ HAVING new_unit < 50000;
+
++---------------+------------+
+| category      | new_unit   |
++---------------+------------+
+| Electronics   | 13542.8571 |
+| Furniture     | 10833.3333 |
+| HomeAppliance | 19000.0000 |
++---------------+------------+
+
+ SELECT category,SUM(units_sold)AS NEW_SOLD
+    -> FROM SALES
+    -> GROUP BY  category
+    -> HAVING NEW_SOLD > 10
+    -> ORDER by category;
+
++---------------+----------+
+| category      | NEW_SOLD |
++---------------+----------+
+| Electronics   |       72 |
+| Furniture     |       44 |
+| HomeAppliance |       22 |
++---------------+----------+
+
+
+ SELECT category,count(*)AS TOTAL_PRODUCTS
+ FROM SALES
+ GROUP BY  category
+ HAVING TOTAL_PRODUCTS > 1
+ ORDER BY category;
+
++---------------+----------------+
+| category      | TOTAL_PRODUCTS |
++---------------+----------------+
+| Electronics   |              7 |
+| Furniture     |              6 |
+| HomeAppliance |              2 |
++---------------+----------------+
+
+SELECT category,avg(units_sold)AS new_unit
+ FROM SALES
+ GROUP BY  category
+ HAVING new_unit > 5
+ ORDER BY category desc;
+
++---------------+----------+
+| category      | new_unit |
++---------------+----------+
+| HomeAppliance |  11.0000 |
+| Furniture     |   7.3333 |
+| Electronics   |  10.2857 |
++---------------+----------+
+
+ SELECT category,sum(units_sold)AS new_unit
+ FROM SALES
+ GROUP BY  category
+ HAVING new_unit
+ ORDER BY category desc,new_unit desc;
+
++---------------+----------+
+| category      | new_unit |
++---------------+----------+
+| HomeAppliance |       22 |
+| Furniture     |       44 |
+| Electronics   |       72 |
++---------------+----------+
+
+
+
+
+
