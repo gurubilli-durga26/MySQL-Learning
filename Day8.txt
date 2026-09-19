@@ -1,0 +1,468 @@
+CREATE TABLE Orders (
+ id INT,
+ customer_name VARCHAR(100),
+ order_date DATE,
+ total_amount DECIMAL(10,2)
+ );
+
+INSERT INTO Orders VALUES
+ (1, 'Alice', '2024-03-01', 1500.00),
+ (2, 'Bob', '2024-03-05', 450.00),
+ (3, 'Charlie', '2024-03-10', 2500.00),
+ (4, 'Diana', '2024-03-15', 800.00),
+ (5, 'Eve', '2024-03-20', 1200.00),
+ (6, 'Frank', '2024-03-25', 3000.00),
+ (7, 'Grace', '2024-04-02', 1800.00),
+ (8, 'Henry', '2024-04-08', 950.00),
+ (9, 'Ivy', '2024-04-12', 2750.00),
+ (10, 'Jack', '2024-04-18', 650.00),
+ (11, 'Kevin', '2024-04-22', 4200.00),
+ (12, 'Lily', '2024-05-01', 1350.00),
+ (13, 'Michael', '2024-05-08', 5000.00),
+ (14, 'Nancy', '2024-05-15', 2250.00),
+ (15, 'Oliver', '2024-05-25', 900.00);
+
+SELECT *
+FROM Orders
+WHERE order_date BETWEEN "2024-03-03" AND "2024-03-10";
+
++------+---------------+------------+--------------+
+| id   | customer_name | order_date | total_amount |
++------+---------------+------------+--------------+
+|    2 | Bob           | 2024-03-05 |       450.00 |
+|    3 | Charlie       | 2024-03-10 |      2500.00 |
++------+---------------+------------+--------------+
+
+SELECT *
+FROM Orders
+WHERE order_date BETWEEN "2024-04-01" AND "2024-04-30";
++------+---------------+------------+--------------+
+| id   | customer_name | order_date | total_amount |
++------+---------------+------------+--------------+
+|    7 | Grace         | 2024-04-02 |      1800.00 |
+|    8 | Henry         | 2024-04-08 |       950.00 |
+|    9 | Ivy           | 2024-04-12 |      2750.00 |
+|   10 | Jack          | 2024-04-18 |       650.00 |
+|   11 | Kevin         | 2024-04-22 |      4200.00 |
++------+---------------+------------+--------------+
+
+ SELECT *
+ FROM Orders
+ WHERE total_amount BETWEEN 500 AND 1500;
+
++------+---------------+------------+--------------+
+| id   | customer_name | order_date | total_amount |
++------+---------------+------------+--------------+
+|    1 | Alice         | 2024-03-01 |      1500.00 |
+|    4 | Diana         | 2024-03-15 |       800.00 |
+|    5 | Eve           | 2024-03-20 |      1200.00 |
+|    8 | Henry         | 2024-04-08 |       950.00 |
+|   10 | Jack          | 2024-04-18 |       650.00 |
+|   12 | Lily          | 2024-05-01 |      1350.00 |
+|   15 | Oliver        | 2024-05-25 |       900.00 |
++------+---------------+------------+--------------+
+UPDATE Orders
+SET total_amount=total_amount+1000
+WHERE  order_date BETWEEN "2024-03-04" AND "2024-03-10";
+
+SELECT*FROM Orders;
++------+---------------+------------+--------------+
+| id   | customer_name | order_date | total_amount |
++------+---------------+------------+--------------+
+|    1 | Alice         | 2024-03-01 |      1500.00 |
+|    2 | Bob           | 2024-03-05 |      1450.00 |
+|    3 | Charlie       | 2024-03-10 |      3500.00 |
+|    4 | Diana         | 2024-03-15 |       800.00 |
+|    5 | Eve           | 2024-03-20 |      1200.00 |
+|    6 | Frank         | 2024-03-25 |      3000.00 |
+|    7 | Grace         | 2024-04-02 |      1800.00 |
+|    8 | Henry         | 2024-04-08 |       950.00 |
+|    9 | Ivy           | 2024-04-12 |      2750.00 |
+|   10 | Jack          | 2024-04-18 |       650.00 |
+|   11 | Kevin         | 2024-04-22 |      4200.00 |
+|   12 | Lily          | 2024-05-01 |      1350.00 |
+|   13 | Michael       | 2024-05-08 |      5000.00 |
+|   14 | Nancy         | 2024-05-15 |      2250.00 |
+|   15 | Oliver        | 2024-05-25 |       900.00 |
++------+---------------+------------+--------------+
+
+UPDATE Orders
+SET total_amount=total_amount-200
+WHERE total_amount BETWEEN 1000 AND 2000;
+
+ SELECT*FROM Orders;
++------+---------------+------------+--------------+
+| id   | customer_name | order_date | total_amount |
++------+---------------+------------+--------------+
+|    1 | Alice         | 2024-03-01 |      1300.00 |
+|    2 | Bob           | 2024-03-05 |      1250.00 |
+|    3 | Charlie       | 2024-03-10 |      3500.00 |
+|    4 | Diana         | 2024-03-15 |       800.00 |
+|    5 | Eve           | 2024-03-20 |      1000.00 |
+|    6 | Frank         | 2024-03-25 |      3000.00 |
+|    7 | Grace         | 2024-04-02 |      1600.00 |
+|    8 | Henry         | 2024-04-08 |       950.00 |
+|    9 | Ivy           | 2024-04-12 |      2750.00 |
+|   10 | Jack          | 2024-04-18 |       650.00 |
+|   11 | Kevin         | 2024-04-22 |      4200.00 |
+|   12 | Lily          | 2024-05-01 |      1150.00 |
+|   13 | Michael       | 2024-05-08 |      5000.00 |
+|   14 | Nancy         | 2024-05-15 |      2250.00 |
+|   15 | Oliver        | 2024-05-25 |       900.00 |
++------+---------------+------------+--------------+
+
+DELETE FROM Orders
+WHERE total_amount BETWEEN 2500 AND 5000;
+
+SELECT*FROM Orders;
++------+---------------+------------+--------------+
+| id   | customer_name | order_date | total_amount |
++------+---------------+------------+--------------+
+|    1 | Alice         | 2024-03-01 |      1300.00 |
+|    2 | Bob           | 2024-03-05 |      1250.00 |
+|    7 | Grace         | 2024-04-02 |      1600.00 |
+|    8 | Henry         | 2024-04-08 |       950.00 |
+|   10 | Jack          | 2024-04-18 |       650.00 |
+|   12 | Lily          | 2024-05-01 |      1150.00 |
+|   13 | Michael       | 2024-05-08 |      5500.00 |
+|   14 | Nancy         | 2024-05-15 |      2250.00 |
+|   15 | Oliver        | 2024-05-25 |       900.00 |
++------+---------------+------------+--------------+
+
+ UPDATE Orders
+ SET total_amount=total_amount+(total_amount*0.10)
+ WHERE total_amount BETWEEN 2500 AND 5000;
+
+SELECT*FROM Orders;
++------+---------------+------------+--------------+
+| id   | customer_name | order_date | total_amount |
++------+---------------+------------+--------------+
+|    1 | Alice         | 2024-03-01 |      1300.00 |
+|    2 | Bob           | 2024-03-05 |      1250.00 |
+|    3 | Charlie       | 2024-03-10 |      3850.00 |
+|    4 | Diana         | 2024-03-15 |       800.00 |
+|    5 | Eve           | 2024-03-20 |      1000.00 |
+|    6 | Frank         | 2024-03-25 |      3300.00 |
+|    7 | Grace         | 2024-04-02 |      1600.00 |
+|    8 | Henry         | 2024-04-08 |       950.00 |
+|    9 | Ivy           | 2024-04-12 |      3025.00 |
+|   10 | Jack          | 2024-04-18 |       650.00 |
+|   11 | Kevin         | 2024-04-22 |      4620.00 |
+|   12 | Lily          | 2024-05-01 |      1150.00 |
+|   13 | Michael       | 2024-05-08 |      5500.00 |
+|   14 | Nancy         | 2024-05-15 |      2250.00 |
+|   15 | Oliver        | 2024-05-25 |       900.00 |
++------+---------------+------------+--------------+
+
+
+SELECT*FROM Emp
+WHERE dept IN ('Marketing','Admin');
++------+---------+-----------+--------+
+| id   | name    | dept      | salary |
++------+---------+-----------+--------+
+|    4 | Diana   | Marketing |  40000 |
+|    8 | Henry   | Admin     |  42000 |
+|   12 | Lily    | Marketing |  41000 |
+|   13 | Michael | Admin     |  38000 |
++------+---------+-----------+--------+
+
+UPDATE Emp
+SET salary=salary+2000
+WHERE dept IN ('HR','Marketing');
+
+ SELECT*FROM Emp;
++------+---------+-----------+--------+
+| id   | name    | dept      | salary |
++------+---------+-----------+--------+
+|    1 | Alice   | HR        |  37000 |
+|    2 | Bob     | IT        |  50000 |
+|    3 | Charlie | Finance   |  45000 |
+|    4 | Diana   | Marketing |  42000 |
+|    5 | Eve     | IT        |  55000 |
+|    6 | Frank   | Finance   |  48000 |
+|    7 | Grace   | Sales     |  37000 |
+|    8 | Henry   | Admin     |  42000 |
+|    9 | Ivy     | HR        |  41000 |
+|   10 | Jack    | Sales     |  46000 |
+|   11 | Kevin   | IT        |  60000 |
+|   12 | Lily    | Marketing |  43000 |
+|   13 | Michael | Admin     |  38000 |
+|   14 | Nancy   | Finance   |  52000 |
+|   15 | Oliver  | HR        |  45000 |
++------+---------+-----------+--------+
+
+CREATE TABLE employees (
+    ->     emp_id INT PRIMARY KEY,
+    ->     emp_name VARCHAR(50),
+    ->     department VARCHAR(30),
+    ->     salary DECIMAL(10,2),
+    ->     experience INT,
+    ->     age INT
+    -> );
+
+ INSERT INTO employees VALUES
+    -> (101,'Ravi','IT',65000,5,28),
+    -> (102,'Priya','HR',45000,2,24),
+    -> (103,'Amit','Finance',75000,8,35),
+    -> (104,'Sneha','IT',55000,3,27),
+    -> (105,'Rahul','Sales',40000,1,22),
+    -> (106,'Kiran','Finance',90000,12,40),
+    -> (107,'Anjali','HR',52000,4,29),
+    -> (108,'Suresh','Sales',68000,7,33);
+
+
+ SELECT*FROM employees;
++--------+----------+------------+----------+------------+------+
+| emp_id | emp_name | department | salary   | experience | age  |
++--------+----------+------------+----------+------------+------+
+|    101 | Ravi     | IT         | 65000.00 |          5 |   28 |
+|    102 | Priya    | HR         | 45000.00 |          2 |   24 |
+|    103 | Amit     | Finance    | 75000.00 |          8 |   35 |
+|    104 | Sneha    | IT         | 55000.00 |          3 |   27 |
+|    105 | Rahul    | Sales      | 40000.00 |          1 |   22 |
+|    106 | Kiran    | Finance    | 90000.00 |         12 |   40 |
+|    107 | Anjali   | HR         | 52000.00 |          4 |   29 |
+|    108 | Suresh   | Sales      | 68000.00 |          7 |   33 |
++--------+----------+------------+----------+------------+------+
+
+ SELECT emp_name,salary,
+ CASE
+ WHEN salary>=80000 THEN 'HIGH-SALARY'
+ WHEN  salary>=60000 THEN 'MEDIUM SALARY'
+ else 'LOW SALARY'
+ END AS salary_category
+ from employees;
++----------+----------+-----------------+
+| emp_name | salary   | salary_category |
++----------+----------+-----------------+
+| Ravi     | 65000.00 | MEDIUM SALARY   |
+| Priya    | 45000.00 | LOW SALARY      |
+| Amit     | 75000.00 | MEDIUM SALARY   |
+| Sneha    | 55000.00 | LOW SALARY      |
+| Rahul    | 40000.00 | LOW SALARY      |
+| Kiran    | 90000.00 | HIGH-SALARY     |
+| Anjali   | 52000.00 | LOW SALARY      |
+| Suresh   | 68000.00 | MEDIUM SALARY   |
++----------+----------+-----------------+
+
+------------------------------------------------ CASE OPERATOR -----------
+
+SELECT emp_name,experience,
+CASE
+WHEN experience >=10 THEN 'EXPERT'
+WHEN experience >=5 THEN 'SENIOR'
+WHEN experience >=2 THEN 'JUNIOR'
+else 'FRESHER'
+END AS experice_category
+from employees;
+
+           
+|          2 | JUNIOR            |
+|          8 | SENIOR            |
+|          3 | JUNIOR            |
+|          1 | FRESHER           |
+|         12 | EXPERT            |
+|          4 | JUNIOR            |
+|          7 | SENIOR    
+
+
+ UPDATE employees SET SALARY=
+ CASE
+ WHEN experience >=10 THEN SALARY+10000
+ WHEN experience >=5  THEN SALARY+5000
+ ELSE SALARY+2000
+ END;
+
+ SELECT*FROM employees;
++--------+----------+------------+-----------+------------+------+
+| emp_id | emp_name | department | salary    | experience | age  |
++--------+----------+------------+-----------+------------+------+
+|    101 | Ravi     | IT         |  70000.00 |          5 |   28 |
+|    102 | Priya    | HR         |  47000.00 |          2 |   24 |
+|    103 | Amit     | Finance    |  80000.00 |          8 |   35 |
+|    104 | Sneha    | IT         |  57000.00 |          3 |   27 |
+|    105 | Rahul    | Sales      |  42000.00 |          1 |   22 |
+|    106 | Kiran    | Finance    | 100000.00 |         12 |   40 |
+|    107 | Anjali   | HR         |  54000.00 |          4 |   29 |
+|    108 | Suresh   | Sales      |  73000.00 |          7 |   33 |
++--------+----------+------------+-----------+------------+------+
+
+
+ SELECT*FROM EMP WHERE NAME LIKE 'R%';
++------+--------+---------+--------+
+| id   | name   | dept    | salary |
++------+--------+---------+--------+
+|    1 | Rahul  | IT      |  50000 |
+|    2 | Ramesh | HR      |  35000 |
+|   10 | Rohan  | IT      |  52000 |
+|   14 | Rajesh | Finance |  51000 |
++------+--------+---------+--------+
+
+SELECT*FROM EMP WHERE NAME LIKE '%SH';
++------+--------+-----------+--------+
+| id   | name   | dept      | salary |
++------+--------+-----------+--------+
+|    2 | Ramesh | HR        |  35000 |
+|    4 | Mahesh | Marketing |  40000 |
+|    5 | Suresh | IT        |  55000 |
+|    7 | Manish | Admin     |  42000 |
+|    8 | Ganesh | Finance   |  47000 |
+|    9 | Naresh | HR        |  39000 |
+|   13 | Dinesh | Admin     |  46000 |
+|   14 | Rajesh | Finance   |  51000 |
++------+--------+-----------+--------+
+
+SELECT*FROM EMP WHERE NAME LIKE '%AR%';
++------+--------+---------+--------+
+| id   | name   | dept    | salary |
++------+--------+---------+--------+
+|    3 | Karan  | Finance |  45000 |
+|    6 | Arjun  | Sales   |  38000 |
+|    9 | Naresh | HR      |  39000 |
++------+--------+---------+--------+
+
+SELECT*FROM EMP WHERE NAME LIKE '_____';
++------+-------+---------+--------+
+| id   | name  | dept    | salary |
++------+-------+---------+--------+
+|    1 | Rahul | IT      |  50000 |
+|    3 | Karan | Finance |  45000 |
+|    6 | Arjun | Sales   |  38000 |
+|   10 | Rohan | IT      |  52000 |
+|   11 | Mohan | Sales   |  41000 |
+|   15 | Kiran | IT      |  48000 |
++------+-------+---------+--------+
+
+SELECT*FROM EMP WHERE NAME LIKE 'R____';
++------+-------+------+--------+
+| id   | name  | dept | salary |
++------+-------+------+--------+
+|    1 | Rahul | IT   |  50000 |
+|   10 | Rohan | IT   |  52000 |
++------+-------+------+--------+
+
+SELECT*FROM EMP WHERE NAME LIKE 'R___L';
++------+-------+------+--------+
+| id   | name  | dept | salary |
++------+-------+------+--------+
+|    1 | Rahul | IT   |  50000 |
++------+-------+------+--------+
+
+UPDATE EMP SET salary=salary+500 WHERE name like '_____';
+
+mysql> SELECT*FROM EMP;
++------+--------+-----------+--------+
+| id   | name   | dept      | salary |
++------+--------+-----------+--------+
+|    1 | Rahul  | IT        |  55500 |
+|    2 | Ramesh | HR        |  40000 |
+|    3 | Karan  | Finance   |  45500 |
+|    4 | Mahesh | Marketing |  40000 |
+|    5 | Suresh | IT        |  55000 |
+|    6 | Arjun  | Sales     |  38500 |
+|    7 | Manish | Admin     |  42000 |
+|    8 | Ganesh | Finance   |  47000 |
+|    9 | Naresh | HR        |  39000 |
+|   10 | Rohan  | IT        |  57500 |
+|   11 | Mohan  | Sales     |  41500 |
+|   12 | Kishan | Marketing |  43000 |
+|   13 | Dinesh | Admin     |  46000 |
+|   14 | Rajesh | Finance   |  56000 |
+|   15 | Kiran  | IT        |  48500 |
++------+--------+-----------+--------+
+
+DELETE FROM EMP WHERE name LIKE 'M%E%';
+
+mysql> SELECT*FROM EMP;
++------+--------+-----------+--------+
+| id   | name   | dept      | salary |
++------+--------+-----------+--------+
+|    1 | Rahul  | IT        |  55500 |
+|    2 | Ramesh | HR        |  40000 |
+|    3 | Karan  | Finance   |  45500 |
+|    5 | Suresh | IT        |  55000 |
+|    6 | Arjun  | Sales     |  38500 |
+|    7 | Manish | Admin     |  42000 |
+|    8 | Ganesh | Finance   |  47000 |
+|    9 | Naresh | HR        |  39000 |
+|   10 | Rohan  | IT        |  57500 |
+|   11 | Mohan  | Sales     |  41500 |
+|   12 | Kishan | Marketing |  43000 |
+|   13 | Dinesh | Admin     |  46000 |
+|   14 | Rajesh | Finance   |  56000 |
+|   15 | Kiran  | IT        |  48500 |
++------+--------+-----------+--------+
+
+select now();
++---------------------+
+| now()               |
++---------------------+
+| 2026-09-03 15:17:51 |
++---------------------+
+
+ select curtime();
++-----------+
+| curtime() |
++-----------+
+| 15:18:18  |
++-----------+
+
+ select curdate();
++------------+
+| curdate()  |
++------------+
+| 2026-09-03 |
++------------+
+
+select version();
++-----------+
+| version() |
++-----------+
+| 8.0.46    |
++-----------+
+
+Aggregate Functions :
+
+Performs calculations on mul rows and returns single value
+
+1.count()
+
+select count(*)as total_records from employees;
++---------------+
+| total_records |
++---------------+
+|             8 |
++---------------+
+
+2.sum()
+select sum(salary)as total_salary from employees;
++--------------+
+| total_salary |
++--------------+
+|    523000.00 |
++--------------+
+3.min()
+
+select max(salary)as max_salary from employees;
++------------+
+| max_salary |
++------------+
+|  100000.00 |
++------------+
+
+4.max()
+
+select min(salary)as min_salary from employees;
++------------+
+| min_salary |
++------------+
+|   42000.00 |
++------------+
+
+5.avg()
+ select avg(salary)as avg_salary from employees;
++--------------+
+| avg_salary   |
++--------------+
+| 65375.000000 |
++--------------+
