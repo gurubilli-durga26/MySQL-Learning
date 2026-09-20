@@ -1,0 +1,494 @@
+SQL Date And Time Functions
+
+curdate()--> It returns the current date
+curtime()--> It return the current time
+now()-->Return curr date and time
+time()-->extract time part  
+date()-->extract date part
+year()-->extract year
+month()-->extract month
+day()-->extract day of month
+week()-->extract week no
+dayofweek()-->day of week
+date_add-->addd time to date
+date_sub
+datediff
+
+ select curdate() as current__date;
++---------------+
+| current__date |
++---------------+
+| 2026-09-07    |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select curtime() as current__time;
++---------------+
+| current__time |
++---------------+
+| 14:10:03      |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select now() as current_date_time;
++---------------------+
+| current_date_time   |
++---------------------+
+| 2026-09-07 14:10:32 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select date(now())as extracted_date;
++----------------+
+| extracted_date |
++----------------+
+| 2026-09-07     |
++----------------+
+select time('2024-08-08 14:32:15')as extracted_time;
++----------------+
+| extracted_time |
++----------------+
+| 14:32:15       |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select year(now())as extracted_year;
++----------------+
+| extracted_year |
++----------------+
+|           2026 |
++----------------+
+1 row in set (0.03 sec)
+
+mysql> select month(now())as extracted_month;
++-----------------+
+| extracted_month |
++-----------------+
+|               9 |
++-----------------+
+1 row in set (0.03 sec)
+
+mysql> select day(now())as extracted_day;
++---------------+
+| extracted_day |
++---------------+
+|             7 |
++---------------+
+ select week(now())as week_number;
++-------------+
+| week_number |
++-------------+
+|          36 |
++-------------+
+select dayofweek(now())as day_of_week;
++-------------+
+| day_of_week |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(now(),interval 100 day)as new_date;
++---------------------+
+| new_date            |
++---------------------+
+| 2026-12-16 14:17:22 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(now(),interval 100 day)as new_date;
++---------------------+
+| new_date            |
++---------------------+
+| 2026-05-30 14:17:51 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select datediff(now(),'2000-05-23')as days_diff;
++-----------+
+| days_diff |
++-----------+
+|      9603 |
++-----------+
+select str_to_date('2024-03-20','%Y-%m-%d') as formatted_date;
++----------------+
+| formatted_date |
++----------------+
+| 2024-03-20     |
++----------------+
+ SELECT DATE_FORMAT('2024-03-20','%W,%M,%d,%Y')as formatted_date;
++-------------------------+
+| formatted_date          |
++-------------------------+
+| Wednesday,March,20,2024 |
++-------------------------+
+
+SELECT last_day(now())as last_day_of_month;
++-------------------+
+| last_day_of_month |
++-------------------+
+| 2026-09-30        |
++-------------------+
+
+
+mysql> select makedate(2024,60)as result_date;
++-------------+
+| result_date |
++-------------+
+| 2024-02-29  |
++-------------+
+
+
+mysql> select maketime(14,30,15)as result_time;
++-------------+
+| result_time |
++-------------+
+| 14:30:15    |
++-------------+
+
+SELECT monthname(now())as month_name;
++------------+
+| month_name |
++------------+
+| September  |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select dayname(now())as day_name;
++----------+
+| day_name |
++----------+
+| Monday   |
++----------+
+1 row in set (0.00 sec)
+
+select quarter(now())as quarter_value;
++---------------+
+| quarter_value |
++---------------+
+|             3 |
++---------------+
+
+select sec_to_time(3661)as time_value;
++------------+
+| time_value |
++------------+
+| 01:01:01   |
++------------+
+1 row in set (0.03 sec)
+
+mysql> select time_to_sec('01:01:01')as total_seconds;
++---------------+
+| total_seconds |
++---------------+
+|          3661 |
++---------------+
+1 row in set (0.03 sec)
+
+mysql> select sysdate() as system_date;
++---------------------+
+| system_date         |
++---------------------+
+| 2026-09-07 14:31:58 |
++---------------------+
+ CREATE TABLE employee_attendance
+    -> (
+    ->  emp_id INT PRIMARY KEY AUTO_INCREMENT,
+    ->  emp_name VARCHAR(100),
+    ->  department VARCHAR(50),
+    ->  joining_date DATE,
+    ->  birth_date DATE,
+    ->  login_time DATETIME,
+    ->  logout_time DATETIME,
+    ->  salary DECIMAL(10,2)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO employee_attendance
+    -> (emp_name, department, joining_date, birth_date, login_time, logout_time, salary)
+    -> VALUES
+    -> ('Rahul','IT','2021-06-15','1998-05-10','2024-11-20 09:05:10','2024-11-20 18:15:30',55000),
+    -> ('Sneha','HR','2020-03-21','1996-11-18','2024-11-21 08:55:20','2024-11-21 17:45:50',48000),
+    -> ('Arjun','Finance','2019-08-10','1994-07-30','2024-11-22 09:15:45','2024-11-22 18:35:20',62000),
+    -> ('Priya','IT','2022-01-05','2000-01-25','2024-11-23 09:00:00','2024-11-23 17:55:40',51000),
+    -> ('Kiran','Admin','2018-12-11','1992-09-15','2024-11-24 08:40:30','2024-11-24 17:30:00',45000),
+    -> ('Anjali','Testing','2023-04-17','1999-12-20','2024-11-25 09:12:10','2024-11-25 18:05:00',47000),
+    -> ('Vijay','IT','2021-09-14','1997-04-08','2024-11-26 09:08:15','2024-11-26 18:20:40',59000),
+    -> ('Divya','HR','2019-10-19','1995-06-11','2024-11-27 08:50:30','2024-11-27 17:42:15',50000),
+    -> ('Ramesh','Finance','2017-07-01','1991-08-14','2024-11-28 09:03:00','2024-11-28 18:12:00',70000),
+    -> ('Pooja','Testing','2022-05-09','2001-03-19','2024-11-29 09:18:50','2024-11-29 18:25:10',53000);
+Query OK, 10 rows affected (0.04 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM employee_attendance;
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+| emp_id | emp_name | department | joining_date | birth_date | login_time          | logout_time         | salary   |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+|      1 | Rahul    | IT         | 2021-06-15   | 1998-05-10 | 2024-11-20 09:05:10 | 2024-11-20 18:15:30 | 55000.00 |
+|      2 | Sneha    | HR         | 2020-03-21   | 1996-11-18 | 2024-11-21 08:55:20 | 2024-11-21 17:45:50 | 48000.00 |
+|      3 | Arjun    | Finance    | 2019-08-10   | 1994-07-30 | 2024-11-22 09:15:45 | 2024-11-22 18:35:20 | 62000.00 |
+|      4 | Priya    | IT         | 2022-01-05   | 2000-01-25 | 2024-11-23 09:00:00 | 2024-11-23 17:55:40 | 51000.00 |
+|      5 | Kiran    | Admin      | 2018-12-11   | 1992-09-15 | 2024-11-24 08:40:30 | 2024-11-24 17:30:00 | 45000.00 |
+|      6 | Anjali   | Testing    | 2023-04-17   | 1999-12-20 | 2024-11-25 09:12:10 | 2024-11-25 18:05:00 | 47000.00 |
+|      7 | Vijay    | IT         | 2021-09-14   | 1997-04-08 | 2024-11-26 09:08:15 | 2024-11-26 18:20:40 | 59000.00 |
+|      8 | Divya    | HR         | 2019-10-19   | 1995-06-11 | 2024-11-27 08:50:30 | 2024-11-27 17:42:15 | 50000.00 |
+|      9 | Ramesh   | Finance    | 2017-07-01   | 1991-08-14 | 2024-11-28 09:03:00 | 2024-11-28 18:12:00 | 70000.00 |
+|     10 | Pooja    | Testing    | 2022-05-09   | 2001-03-19 | 2024-11-29 09:18:50 | 2024-11-29 18:25:10 | 53000.00 |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+
+ SELECT *
+    -> FROM employee_attendance
+    -> WHERE month(birth_date) = 11;
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+| emp_id | emp_name | department | joining_date | birth_date | login_time          | logout_time         | salary   |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+|      2 | Sneha    | HR         | 2020-03-21   | 1996-11-18 | 2024-11-21 08:55:20 | 2024-11-21 17:45:50 | 48000.00 |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM employee_attendance
+    -> WHERE month(joining_date)=6;
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+| emp_id | emp_name | department | joining_date | birth_date | login_time          | logout_time         | salary   |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+|      1 | Rahul    | IT         | 2021-06-15   | 1998-05-10 | 2024-11-20 09:05:10 | 2024-11-20 18:15:30 | 55000.00 |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *
+    ->  FROM employee_attendance
+    -> WHERE day(birth_date)=10;
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+| emp_id | emp_name | department | joining_date | birth_date | login_time          | logout_time         | salary   |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+|      1 | Rahul    | IT         | 2021-06-15   | 1998-05-10 | 2024-11-20 09:05:10 | 2024-11-20 18:15:30 | 55000.00 |
+
+mysql> SELECT *
+    -> FROM employee_attendance
+    -> WHERE YEAR(joining_date) = YEAR(CURDATE());
+
+mysql> SELECT *
+    ->  FROM employee_attendance
+    -> WHERE day(birth_date)=10;
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+| emp_id | emp_name | department | joining_date | birth_date | login_time          | logout_time         | salary   |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+|      1 | Rahul    | IT         | 2021-06-15   | 1998-05-10 | 2024-11-20 09:05:10 | 2024-11-20 18:15:30 | 55000.00 |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM employee_attendance
+    -> WHERE quarter(joining_date)=2;
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+| emp_id | emp_name | department | joining_date | birth_date | login_time          | logout_time         | salary   |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+|      1 | Rahul    | IT         | 2021-06-15   | 1998-05-10 | 2024-11-20 09:05:10 | 2024-11-20 18:15:30 | 55000.00 |
+|      6 | Anjali   | Testing    | 2023-04-17   | 1999-12-20 | 2024-11-25 09:12:10 | 2024-11-25 18:05:00 | 47000.00 |
+|     10 | Pooja    | Testing    | 2022-05-09   | 2001-03-19 | 2024-11-29 09:18:50 | 2024-11-29 18:25:10 | 53000.00 |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+
+ SELECT *
+    -> FROM employee_attendance
+    ->  WHERE YEAR(joining_date) >=3 ;
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+| emp_id | emp_name | department | joining_date | birth_date | login_time          | logout_time         | salary   |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+|      1 | Rahul    | IT         | 2021-06-15   | 1998-05-10 | 2024-11-20 09:05:10 | 2024-11-20 18:15:30 | 55000.00 |
+|      2 | Sneha    | HR         | 2020-03-21   | 1996-11-18 | 2024-11-21 08:55:20 | 2024-11-21 17:45:50 | 48000.00 |
+|      3 | Arjun    | Finance    | 2019-08-10   | 1994-07-30 | 2024-11-22 09:15:45 | 2024-11-22 18:35:20 | 62000.00 |
+|      4 | Priya    | IT         | 2022-01-05   | 2000-01-25 | 2024-11-23 09:00:00 | 2024-11-23 17:55:40 | 51000.00 |
+|      5 | Kiran    | Admin      | 2018-12-11   | 1992-09-15 | 2024-11-24 08:40:30 | 2024-11-24 17:30:00 | 45000.00 |
+|      6 | Anjali   | Testing    | 2023-04-17   | 1999-12-20 | 2024-11-25 09:12:10 | 2024-11-25 18:05:00 | 47000.00 |
+|      7 | Vijay    | IT         | 2021-09-14   | 1997-04-08 | 2024-11-26 09:08:15 | 2024-11-26 18:20:40 | 59000.00 |
+|      8 | Divya    | HR         | 2019-10-19   | 1995-06-11 | 2024-11-27 08:50:30 | 2024-11-27 17:42:15 | 50000.00 |
+|      9 | Ramesh   | Finance    | 2017-07-01   | 1991-08-14 | 2024-11-28 09:03:00 | 2024-11-28 18:12:00 | 70000.00 |
+|     10 | Pooja    | Testing    | 2022-05-09   | 2001-03-19 | 2024-11-29 09:18:50 | 2024-11-29 18:25:10 | 53000.00 |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+
+
+mysql> SELECT emp_name,timestampdiff(hour,login_time,logout_time)as working_hours
+    -> FROM employee_attendance;
++----------+---------------+
+| emp_name | working_hours |
++----------+---------------+
+| Rahul    |             9 |
+| Sneha    |             8 |
+| Arjun    |             9 |
+| Priya    |             8 |
+| Kiran    |             8 |
+| Anjali   |             8 |
+| Vijay    |             9 |
+| Divya    |             8 |
+| Ramesh   |             9 |
+| Pooja    |             9 |
++----------+---------------+
+
+mysql> SELECT emp_name,timestampdiff(minute,login_time,logout_time)as working_mins
+    ->  FROM employee_attendance;
++----------+--------------+
+| emp_name | working_mins |
++----------+--------------+
+| Rahul    |          550 |
+| Sneha    |          530 |
+| Arjun    |          559 |
+| Priya    |          535 |
+| Kiran    |          529 |
+| Anjali   |          532 |
+| Vijay    |          552 |
+| Divya    |          531 |
+| Ramesh   |          549 |
+| Pooja    |          546 |
++----------+--------------+
+
+ SELECT *
+    ->  FROM employee_attendance
+    -> WHERE hour(login_time) < 9;
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+| emp_id | emp_name | department | joining_date | birth_date | login_time          | logout_time         | salary   |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+|      2 | Sneha    | HR         | 2020-03-21   | 1996-11-18 | 2024-11-21 08:55:20 | 2024-11-21 17:45:50 | 48000.00 |
+|      5 | Kiran    | Admin      | 2018-12-11   | 1992-09-15 | 2024-11-24 08:40:30 | 2024-11-24 17:30:00 | 45000.00 |
+|      8 | Divya    | HR         | 2019-10-19   | 1995-06-11 | 2024-11-27 08:50:30 | 2024-11-27 17:42:15 | 50000.00 |
++--------+----------+------------+--------------+------------+---------------------+---------------------+----------+
+
+-----------------SET OPERATORS--------------
+
+UNION : combines results frim two queries and removes duplicates rows , columns must have rhe same number and type
+
+UNION ALL : Combines results from two queries and includes all rows ,including duplicates colmns must have the same number and type
+
+INSERT : returns rows that are common both queries .columns must have the same number and 
+NOTE: MYSQL doesn't support intersect directly
+
+
+MINUS : Returns rows from the first query that are not present in the second query . Columns must have the same number and type
+NOTE:MYSQL doesn't support minus directly
+
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50),
+    course VARCHAR(50)
+);
+
+INSERT INTO Students VALUES
+(101,'Rahul','Java Full Stack'),
+(102,'Priya','Python Full Stack'),
+(103,'Kiran','Data Science'),
+(104,'Sneha','Java Full Stack'),
+(105,'Ajay','Testing');
+
+
+CREATE TABLE Placed_Students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50),
+    company_name VARCHAR(50)
+);
+INSERT INTO Placed_Students VALUES
+(103,'Kiran','TCS'),
+(104,'Sneha','Infosys'),
+(105,'Ajay','Wipro'),
+(106,'Pooja','Accenture'),
+(107,'Ramesh','Capgemini');
+
+SELECT*FROM Placed_Students;
++------------+--------------+--------------+
+| student_id | student_name | company_name |
++------------+--------------+--------------+
+|        103 | Kiran        | TCS          |
+|        104 | Sneha        | Infosys      |
+|        105 | Ajay         | Wipro        |
+|        106 | Pooja        | Accenture    |
+|        107 | Ramesh       | Capgemini    |
++------------+--------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT*FROM Students;
++------------+--------------+-------------------+
+| student_id | student_name | course            |
++------------+--------------+-------------------+
+|        101 | Rahul        | Java Full Stack   |
+|        102 | Priya        | Python Full Stack |
+|        103 | Kiran        | Data Science      |
+|        104 | Sneha        | Java Full Stack   |
+|        105 | Ajay         | Testing           |
++------------+--------------+-------------------+
+
+SELECT  student_name FROM Students
+    -> UNION
+    -> SELECT  student_name FROM Placed_Students;
++--------------+
+| student_name |
++--------------+
+| Rahul        |
+| Priya        |
+| Kiran        |
+| Sneha        |
+| Ajay         |
+| Pooja        |
+| Ramesh       |
++--------------+
+
+SELECT  student_id FROM Students
+UNION
+SELECT  student_id FROM Placed_Students;
++------------+
+| student_id |
++------------+
+|        101 |
+|        102 |
+|        103 |
+|        104 |
+|        105 |
+|        106 |
+|        107 |
++------------+
+
+SELECT  student_name FROM Students
+UNION ALL
+SELECT  student_name FROM Placed_Students;
++--------------+
+| student_name |
++--------------+
+| Rahul        |
+| Priya        |
+| Kiran        |
+| Sneha        |
+| Ajay         |
+| Kiran        |
+| Sneha        |
+| Ajay         |
+| Pooja        |
+| Ramesh       |
++--------------+
+
+SELECT  student_name FROM Students
+INTERSECT
+SELECT  student_name FROM Placed_Students;
+
++--------------+
+| student_name |
++--------------+
+| Kiran        |
+| Sneha        |
+| Ajay         |
++--------------+
+
+SELECT  student_name FROM Students
+EXCEPT
+SELECT  student_name FROM Placed_Students;
+
+ +--------------+
+| student_name |
++--------------+
+| Rahul        |
+| Priya        |
++--------------+
+-------------------------------------------JOINS-------------
+INNER JOIN --> MATCHED RECORDS FROM BOTH TABLES
+LEFT JOIN --> MATCHED RECORD+ LEFT TABLE RECORDS
+RIGHT JOIN --> MATCHED RECORD + RIGHT TABLE RECORDS
+FULL JOIN --> INNER JOIN + RIGHT JOIN + LEFT JOIN
+CROSS JOIN --> IT PERFORMS CARTESIAN PRODUCT 
+
